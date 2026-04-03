@@ -10,7 +10,10 @@
       "Bash(node -e \"const pkg = require\\('/mnt/d/Repos/screeps/node_modules/screeps-api/package.json'\\); console.log\\(pkg.version\\)\")",
       "WebFetch(domain:docs.screeps.com)",
       "Bash(npx tsc:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git status:*)",
+      "Bash(git push:*)"
     ]
   }
 }

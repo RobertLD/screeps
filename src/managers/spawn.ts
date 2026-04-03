@@ -100,7 +100,7 @@ function trySpawn(
 function drawSpawnStatus(spawn: StructureSpawn, counts: Record<string, number>, nextRole: string | null): void {
   const sources = spawn.room.find(FIND_SOURCES).length;
   const minerTarget = sources;
-  const haulerTarget = sources * 2;
+  const haulerTarget = sources;
 
   const lines = [
     `M:${counts.miner}/${minerTarget} H:${counts.hauler}/${haulerTarget}`,
@@ -134,7 +134,7 @@ export function runSpawnManager(spawn: StructureSpawn): void {
   const isEmergency = counts.miner === 0;
 
   const minerTarget = sources.length;
-  const haulerTarget = sources.length * 2;
+  const haulerTarget = sources.length;
 
   let nextRole: string | null = null;
 
