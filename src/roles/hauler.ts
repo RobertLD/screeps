@@ -65,7 +65,7 @@ export function runHauler(creep: Creep): void {
     const target = findDeliveryTarget(creep);
     if (target) {
       if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(target, { visualizePathStyle: { stroke: "#ffffff" } });
+        creep.moveTo(target, { visualizePathStyle: { stroke: "#ffffff" }, reusePath: 5 });
       }
     }
   } else {
@@ -74,11 +74,11 @@ export function runHauler(creep: Creep): void {
 
     if (source instanceof Resource) {
       if (creep.pickup(source) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(source, { visualizePathStyle: { stroke: "#00ff00" } });
+        creep.moveTo(source, { visualizePathStyle: { stroke: "#00ff00" }, reusePath: 5 });
       }
     } else {
       if (creep.withdraw(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(source, { visualizePathStyle: { stroke: "#00ff00" } });
+        creep.moveTo(source, { visualizePathStyle: { stroke: "#00ff00" }, reusePath: 5 });
       }
     }
   }

@@ -43,12 +43,20 @@ const roleMap: Record<string, (creep: Creep) => void> = {
   builder:  runBuilder
 };
 
+const CPU_WARN_THRESHOLD = 0.8; // Warn when using >80% of CPU limit
+
 export const loop = ErrorMapper.wrapLoop(() => {
   // Clean up memory for dead creeps
   for (const name in Memory.creeps) {
     if (!(name in Game.creeps)) {
       delete Memory.creeps[name];
     }
+  }
+
+  // CPU guard — log a warning if we're burning through the tick budget
+  const cpuUsed = Game.cpu.getUsed();
+  if (cpuUsed > Game.cpu.limit * CPU_WARN_THRESHOLD) {
+    console.log(`[WARN] High CPU usage at start of tick: ${cpuUsed.toFixed(2)}/${Game.cpu.limit}`);
   }
 
   // Run per-room planners (run-once or RCL-gated)

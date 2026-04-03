@@ -17,14 +17,14 @@ export function runMiner(creep: Creep): void {
   if (container) {
     // Sit on the container tile and harvest into it
     if (!creep.pos.isEqualTo(container.pos)) {
-      creep.moveTo(container, { visualizePathStyle: { stroke: "#ffaa00" } });
+      creep.moveTo(container, { visualizePathStyle: { stroke: "#ffaa00" }, reusePath: 5 });
       return;
     }
     creep.harvest(source);
   } else {
     // Container not yet built — harvest and let energy drop for haulers to collect
     if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
-      creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" } });
+      creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" }, reusePath: 5 });
     }
   }
 }

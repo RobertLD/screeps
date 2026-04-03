@@ -17,7 +17,7 @@ export function runBuilder(creep: Creep): void {
     const site = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
     if (site) {
       if (creep.build(site) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(site, { visualizePathStyle: { stroke: "#0000ff" } });
+        creep.moveTo(site, { visualizePathStyle: { stroke: "#0000ff" }, reusePath: 5 });
       }
     } else {
       // Nothing to build — help upgrade the controller
@@ -42,14 +42,14 @@ export function runBuilder(creep: Creep): void {
 
     if (container) {
       if (creep.withdraw(container, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(container, { visualizePathStyle: { stroke: "#ffaa00" } });
+        creep.moveTo(container, { visualizePathStyle: { stroke: "#ffaa00" }, reusePath: 5 });
       }
     } else {
       // No containers yet — harvest directly
       const source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
       if (source) {
         if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
-          creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" } });
+          creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" }, reusePath: 5 });
         }
       }
     }

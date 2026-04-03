@@ -17,7 +17,7 @@ export function runUpgrader(creep: Creep): void {
     const controller = creep.room.controller;
     if (controller) {
       if (creep.upgradeController(controller) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(controller, { visualizePathStyle: { stroke: "#ffffff" } });
+        creep.moveTo(controller, { visualizePathStyle: { stroke: "#ffffff" }, reusePath: 5 });
       }
     }
   } else {
@@ -30,14 +30,14 @@ export function runUpgrader(creep: Creep): void {
 
     if (controllerContainer) {
       if (creep.withdraw(controllerContainer, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(controllerContainer, { visualizePathStyle: { stroke: "#ffaa00" } });
+        creep.moveTo(controllerContainer, { visualizePathStyle: { stroke: "#ffaa00" }, reusePath: 5 });
       }
     } else {
       // Container not built yet — harvest directly
       const source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
       if (source) {
         if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
-          creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" } });
+          creep.moveTo(source, { visualizePathStyle: { stroke: "#ffaa00" }, reusePath: 5 });
         }
       }
     }
