@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rollup --version)",
+      "Bash(node -e \"const r = require\\('/mnt/d/Repos/screeps/node_modules/rollup-plugin-typescript2/package.json'\\); console.log\\('rpt2:', r.version\\)\")",
+      "Bash(npm install:*)",
+      "Bash(node -e \"console.log\\(require\\('/mnt/d/Repos/screeps/node_modules/rollup-plugin-typescript2/package.json'\\).version\\)\")",
+      "Bash(rollup -c rollup.config.mjs)",
+      "Bash(node -e \"const {ScreepsAPI} = require\\('/mnt/d/Repos/screeps/node_modules/screeps-api'\\); console.log\\(Object.keys\\(ScreepsAPI.prototype\\)\\)\")",
+      "Bash(node -e \"const pkg = require\\('/mnt/d/Repos/screeps/node_modules/screeps-api/package.json'\\); console.log\\(pkg.version\\)\")",
+      "WebFetch(domain:docs.screeps.com)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
