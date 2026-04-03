@@ -41,11 +41,23 @@ function buildHaulerBody(energyCapacity: number): BodyPartConstant[] {
 
 /**
  * Generic body: repeats a [WORK, CARRY, MOVE] unit scaled to energy capacity.
+ * Used for upgraders.
  */
 function buildGenericBody(energyCapacity: number): BodyPartConstant[] {
   const unit: BodyPartConstant[] = [WORK, CARRY, MOVE];
   const unitCost = bodyCost(unit);
   const repeats = Math.min(4, Math.max(1, Math.floor(energyCapacity / unitCost)));
+  return Array(repeats).fill(unit).flat();
+}
+
+/**
+ * Builder body: prioritises WORK parts for faster construction.
+ * Ratio is 3 WORK : 2 CARRY : 2 MOVE to balance build speed and carry capacity.
+ */
+function buildBuilderBody(energyCapacity: number): BodyPartConstant[] {
+  const unit: BodyPartConstant[] = [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE];
+  const unitCost = bodyCost(unit);
+  const repeats = Math.min(2, Math.max(1, Math.floor(energyCapacity / unitCost)));
   return Array(repeats).fill(unit).flat();
 }
 
@@ -160,6 +172,8 @@ export function runSpawnManager(spawn: StructureSpawn): void {
     } else if (role === "hauler") {
       trySpawn(spawn, "hauler", buildHaulerBody(energyCapacity));
 
+    } else if (role === "builder") {
+      trySpawn(spawn, "builder", buildBuilderBody(energyCapacity));
     } else {
       trySpawn(spawn, role, buildGenericBody(energyCapacity));
     }
